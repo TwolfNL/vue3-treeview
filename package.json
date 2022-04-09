@@ -84,7 +84,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/N00ts/vue3-treeview.git"
+    "url": "git+https://github.com/TwolfNL/vue3-treeview.git"
   },
   "bugs": {
     "url": "https://github.com/N00ts/vue3-treeview/issues"
