@@ -61,7 +61,7 @@
           :ref="setInputRef"
           :disabled="disabled"
           @blur="blur"
-          @keydown.enter.stop="update"
+          @keydown.enter.stop="$emit('update', node)"
         />
 
         <span v-else class="node-text" @dblclick="focusInput">

@@ -1,6 +1,11 @@
 <template>
   <div class="tree" :ref="setElementRef" :style="style">
-    <TreeLevel :depth="0" :parent-id="null" v-bind="$attrs">
+    <TreeLevel
+      @update="$emit('update', $event)"
+      :depth="0"
+      :parent-id="null"
+      v-bind="$attrs"
+    >
       <template #loading-slot="props">
         <slot name="loading-slot" :node="props.node" />
       </template>
@@ -8,7 +13,7 @@
       <template #before-input="props">
         <slot name="before-input" :node="props.node" />
       </template>
-      
+
       <template #after-input="props">
         <slot name="after-input" :node="props.node" />
       </template>

@@ -257,7 +257,8 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
         node: item,
         depth: $props.depth,
         index,
-        "parent-id": $props.parentId
+        "parent-id": $props.parentId,
+        onUpdate: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("update", $event))
       }, {
         "loading-slot": withCtx((props) => [
           renderSlot(_ctx.$slots, "loading-slot", {
@@ -5772,6 +5773,7 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     style: _ctx.style
   }, [
     createVNode(_component_TreeLevel, mergeProps({
+      onUpdate: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("update", $event)),
       depth: 0,
       "parent-id": null
     }, _ctx.$attrs), {
@@ -6786,7 +6788,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           ref: $options.setInputRef,
           disabled: _ctx.disabled,
           onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.blur && _ctx.blur(...args)),
-          onKeydown: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => _ctx.update && _ctx.update(...args), ["stop"]), ["enter"]))
+          onKeydown: _cache[5] || (_cache[5] = withKeys(withModifiers(($event) => _ctx.$emit("update", $props.node), ["stop"]), ["enter"]))
         }, null, 40, ["disabled"])), [
           [vModelText, _ctx.text]
         ]) : (openBlock(), createBlock("span", {
