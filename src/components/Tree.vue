@@ -8,7 +8,7 @@
       <template #before-input="props">
         <slot name="before-input" :node="props.node" />
       </template>
-      bladieblo
+      
       <template #after-input="props">
         <slot name="after-input" :node="props.node" />
       </template>
