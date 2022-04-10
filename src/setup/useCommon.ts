@@ -57,17 +57,6 @@ export default function useCommon(props: INodeProps): IUseCommon {
             }
         }
     });
-    
-    const update = ((e: MouseEvent) => {
-        if (e.type === "update") {
-            const current = e.currentTarget as HTMLElement;
-            const related = e.relatedTarget as HTMLElement;
-    
-            if (!current.contains(related)) {
-                root.emit(nodeEvents.update, e, node.value);
-            }
-        }
-    });
 
     return {
         state,
@@ -82,7 +71,6 @@ export default function useCommon(props: INodeProps): IUseCommon {
         editing,
         focused,
         blur,
-        update,
         root,
     };
 }

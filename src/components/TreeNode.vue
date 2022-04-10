@@ -12,7 +12,7 @@
     @keydown.up.stop="up"
     @keydown.down.stop="down"
   >
-    <div
+    <div  
       class="node-wrapper"
       :class="nodeClass"
       :style="style"
@@ -20,7 +20,6 @@
       :draggable="draggable"
       :tabindex="tabIndex"
       @blur="blur"
-      @update="update"
       @click.stop="focus"
       @dragstart.stop="dragstart"
       @dragend.stop="dragend"
@@ -29,8 +28,15 @@
       @dragover.prevent.stop="dragover"
       @drop.prevent.stop="drop"
     >
-      <div class="icon-wrapper" v-if="!hideIcons" @click.stop="toggle">
-        <TreeIcons :is-leaf="isLeaf" :opened="opened" />
+      <div
+        class="icon-wrapper"
+        v-if="!hideIcons"
+        @click.stop="toggle"
+      >
+        <TreeIcons
+          :is-leaf="isLeaf"
+          :opened="opened"
+        />
       </div>
 
       <div
@@ -46,10 +52,13 @@
           :checked="checked"
           :disabled="disabled"
           :indeterminate.prop="indeterminate"
-        />
-      </div>
+        >
+      </div>  
 
-      <slot name="before-input" :node="node" />
+      <slot
+        name="before-input"
+        :node="node"
+      />
 
       <div class="input-wrapper">
         <input
@@ -61,18 +70,28 @@
           :ref="setInputRef"
           :disabled="disabled"
           @blur="blur"
-          @keydown.enter.stop="$emit('update', node)"
-        />
+        >
 
-        <span v-else class="node-text" @dblclick="focusInput">
+        <span 
+          v-else
+          class="node-text"
+          @dblclick="focusInput"
+        >
           {{ text }}
         </span>
       </div>
 
-      <slot name="after-input" :node="node" />
+      <slot
+        name="after-input"
+        :node="node"
+      />
     </div>
 
-    <slot v-if="displayLoading" name="loading-slot" :node="node" />
+    <slot
+      v-if="displayLoading"
+      name="loading-slot"
+      :node="node"
+    />
 
     <transition name="level">
       <TreeLevel
@@ -82,15 +101,24 @@
         :ref="setLevelRef"
       >
         <template #loading-slot="props">
-          <slot name="loading-slot" :node="props.node" />
+          <slot
+            name="loading-slot"
+            :node="props.node"
+          />
         </template>
 
         <template #before-input="props">
-          <slot name="before-input" :node="props.node" />
+          <slot
+            name="before-input"
+            :node="props.node"
+          />
         </template>
 
         <template #after-input="props">
-          <slot name="after-input" :node="props.node" />
+          <slot
+            name="after-input"
+            :node="props.node"
+          />
         </template>
       </TreeLevel>
     </transition>
@@ -99,41 +127,41 @@
 
 <script lang="ts">
 import useInput from "../setup/useInput";
-import TreeIcons from "./TreeIcons.vue";
+import TreeIcons from './TreeIcons.vue';
 import { useNode } from "../setup/useNode";
 import { useCheckBox } from "../setup/useCheckBox";
-import useDragAndDrop from "../setup/useDragAndDrop";
+import useDragAndDrop from '../setup/useDragAndDrop';
 import { checkboxEvents, dragEvents, nodeEvents } from "../misc/nodeEvents";
-import useCommon from "../setup/useCommon";
-import { defineAsyncComponent } from "vue";
+import useCommon from '../setup/useCommon';
+import {defineAsyncComponent} from "vue";
 
 export default {
   components: {
     TreeLevel: defineAsyncComponent(() => import("./TreeLevel.vue")),
-    TreeIcons,
+    TreeIcons
   },
   emits: [
     ...Object.values(nodeEvents),
     ...Object.values(checkboxEvents),
-    ...Object.values(dragEvents),
+    ...Object.values(dragEvents)
   ],
   props: {
     depth: {
       required: true,
-      type: Number,
+      type: Number
     },
     index: {
       required: true,
-      type: Number,
+      type: Number
     },
     node: {
       required: true,
-      type: Object,
+      type: Object
     },
     parentId: {
       default: null,
-      type: String,
-    },
+      type: String
+    }
   },
   setup(props: any) {
     const cmn = useCommon(props);
@@ -143,7 +171,7 @@ export default {
       ...useInput(cmn),
       ...useCheckBox(cmn),
       ...useNode(cmn, props),
-      ...useDragAndDrop(cmn, props),
+      ...useDragAndDrop(cmn, props)
     };
   },
   computed: {
@@ -153,9 +181,9 @@ export default {
         this.disabledClass,
         this.checkedClass,
         this.editableClass,
-        this.dragClass,
+        this.dragClass  
       ];
-    },
+    }
   },
   methods: {
     setWrapperRef(e: any) {
@@ -169,7 +197,7 @@ export default {
     },
     setInputRef(e: any) {
       this.input = e;
-    },
+    }
   },
 };
 </script>

@@ -1,5 +1,9 @@
 <template>
-  <ul class="tree-level" :id="id" :style="style">
+  <ul
+    class="tree-level"
+    :id="id"
+    :style="style"
+  >
     <TreeNode
       v-for="(item, index) in level"
       :key="item.id"
@@ -7,46 +11,54 @@
       :depth="depth"
       :index="index"
       :parent-id="parentId"
-      @update="$emit('update', $event)"
     >
       <template #loading-slot="props">
-        <slot name="loading-slot" :node="props.node" />
+        <slot
+          name="loading-slot"
+          :node="props.node"
+        />
       </template>
 
       <template #before-input="props">
-        <slot name="before-input" :node="props.node" />
+        <slot
+          name="before-input"
+          :node="props.node"
+        />
       </template>
 
       <template #after-input="props">
-        <slot name="after-input" :node="props.node" />
+        <slot
+          name="after-input"
+          :node="props.node"
+        />
       </template>
     </TreeNode>
   </ul>
 </template>
 
 <script lang="ts">
-import useLevel from "../setup/useLevel";
-import { defineAsyncComponent } from "vue";
+import useLevel from '../setup/useLevel';
+import {defineAsyncComponent} from "vue";
 
 export default {
   components: {
-    TreeNode: defineAsyncComponent(() => import("./TreeNode.vue")),
+    TreeNode: defineAsyncComponent(() => import("./TreeNode.vue"))
   },
   props: {
     depth: {
       required: true,
       type: Number,
-      default: null,
+      default: null
     },
     parentId: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   setup(props: any) {
     return {
-      ...useLevel(props),
+      ...useLevel(props)
     };
-  },
+  }
 };
 </script>

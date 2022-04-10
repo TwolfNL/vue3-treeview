@@ -257,8 +257,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
         node: item,
         depth: $props.depth,
         index,
-        "parent-id": $props.parentId,
-        onUpdate: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("update", $event))
+        "parent-id": $props.parentId
       }, {
         "loading-slot": withCtx((props) => [
           renderSlot(_ctx.$slots, "loading-slot", {
@@ -5773,7 +5772,6 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     style: _ctx.style
   }, [
     createVNode(_component_TreeLevel, mergeProps({
-      onUpdate: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("update", $event)),
       depth: 0,
       "parent-id": null
     }, _ctx.$attrs), {
@@ -5857,9 +5855,9 @@ function useInput(cmn) {
       wrapper.value.focus();
     }
   };
-  const enter = (event) => {
+  const enter = () => {
     if (editable.value && !cmn.disabled.value && config.value.keyboardNavigation) {
-      cmn.update(event);
+      focusInput();
     }
   };
   return {
@@ -6632,15 +6630,6 @@ function useCommon(props) {
       }
     }
   };
-  const update = (e) => {
-    if (e.type === "update") {
-      const current = e.currentTarget;
-      const related = e.relatedTarget;
-      if (!current.contains(related)) {
-        root2.emit(nodeEvents.update, e, node.value);
-      }
-    }
-  };
   return {
     state,
     node,
@@ -6654,7 +6643,6 @@ function useCommon(props) {
     editing,
     focused,
     blur,
-    update,
     root: root2
   };
 }
@@ -6728,13 +6716,13 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ref: $options.setElementRef,
     "aria-expanded": _ctx.opened,
     onKeydown: [
-      _cache[16] || (_cache[16] = withKeys(withModifiers((...args) => _ctx.enter && _ctx.enter(...args), ["stop"]), ["enter"])),
-      _cache[17] || (_cache[17] = withKeys(withModifiers((...args) => _ctx.esc && _ctx.esc(...args), ["stop"]), ["esc"])),
-      _cache[18] || (_cache[18] = withKeys(withModifiers((...args) => _ctx.space && _ctx.space(...args), ["stop"]), ["space"])),
-      _cache[19] || (_cache[19] = withKeys(withModifiers((...args) => _ctx.left && _ctx.left(...args), ["stop"]), ["left"])),
-      _cache[20] || (_cache[20] = withKeys(withModifiers((...args) => _ctx.right && _ctx.right(...args), ["stop"]), ["right"])),
-      _cache[21] || (_cache[21] = withKeys(withModifiers((...args) => _ctx.up && _ctx.up(...args), ["stop"]), ["up"])),
-      _cache[22] || (_cache[22] = withKeys(withModifiers((...args) => _ctx.down && _ctx.down(...args), ["stop"]), ["down"]))
+      _cache[14] || (_cache[14] = withKeys(withModifiers((...args) => _ctx.enter && _ctx.enter(...args), ["stop"]), ["enter"])),
+      _cache[15] || (_cache[15] = withKeys(withModifiers((...args) => _ctx.esc && _ctx.esc(...args), ["stop"]), ["esc"])),
+      _cache[16] || (_cache[16] = withKeys(withModifiers((...args) => _ctx.space && _ctx.space(...args), ["stop"]), ["space"])),
+      _cache[17] || (_cache[17] = withKeys(withModifiers((...args) => _ctx.left && _ctx.left(...args), ["stop"]), ["left"])),
+      _cache[18] || (_cache[18] = withKeys(withModifiers((...args) => _ctx.right && _ctx.right(...args), ["stop"]), ["right"])),
+      _cache[19] || (_cache[19] = withKeys(withModifiers((...args) => _ctx.up && _ctx.up(...args), ["stop"]), ["up"])),
+      _cache[20] || (_cache[20] = withKeys(withModifiers((...args) => _ctx.down && _ctx.down(...args), ["stop"]), ["down"]))
     ]
   }, [
     createVNode("div", {
@@ -6743,15 +6731,14 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       ref: $options.setWrapperRef,
       draggable: _ctx.draggable,
       tabindex: _ctx.tabIndex,
-      onBlur: _cache[7] || (_cache[7] = (...args) => _ctx.blur && _ctx.blur(...args)),
-      onUpdate: _cache[8] || (_cache[8] = (...args) => _ctx.update && _ctx.update(...args)),
-      onClick: _cache[9] || (_cache[9] = withModifiers((...args) => _ctx.focus && _ctx.focus(...args), ["stop"])),
-      onDragstart: _cache[10] || (_cache[10] = withModifiers((...args) => _ctx.dragstart && _ctx.dragstart(...args), ["stop"])),
-      onDragend: _cache[11] || (_cache[11] = withModifiers((...args) => _ctx.dragend && _ctx.dragend(...args), ["stop"])),
-      onDragenter: _cache[12] || (_cache[12] = withModifiers((...args) => _ctx.dragenter && _ctx.dragenter(...args), ["prevent", "stop"])),
-      onDragleave: _cache[13] || (_cache[13] = withModifiers((...args) => _ctx.dragleave && _ctx.dragleave(...args), ["prevent", "stop"])),
-      onDragover: _cache[14] || (_cache[14] = withModifiers((...args) => _ctx.dragover && _ctx.dragover(...args), ["prevent", "stop"])),
-      onDrop: _cache[15] || (_cache[15] = withModifiers((...args) => _ctx.drop && _ctx.drop(...args), ["prevent", "stop"]))
+      onBlur: _cache[6] || (_cache[6] = (...args) => _ctx.blur && _ctx.blur(...args)),
+      onClick: _cache[7] || (_cache[7] = withModifiers((...args) => _ctx.focus && _ctx.focus(...args), ["stop"])),
+      onDragstart: _cache[8] || (_cache[8] = withModifiers((...args) => _ctx.dragstart && _ctx.dragstart(...args), ["stop"])),
+      onDragend: _cache[9] || (_cache[9] = withModifiers((...args) => _ctx.dragend && _ctx.dragend(...args), ["stop"])),
+      onDragenter: _cache[10] || (_cache[10] = withModifiers((...args) => _ctx.dragenter && _ctx.dragenter(...args), ["prevent", "stop"])),
+      onDragleave: _cache[11] || (_cache[11] = withModifiers((...args) => _ctx.dragleave && _ctx.dragleave(...args), ["prevent", "stop"])),
+      onDragover: _cache[12] || (_cache[12] = withModifiers((...args) => _ctx.dragover && _ctx.dragover(...args), ["prevent", "stop"])),
+      onDrop: _cache[13] || (_cache[13] = withModifiers((...args) => _ctx.drop && _ctx.drop(...args), ["prevent", "stop"]))
     }, [
       !_ctx.hideIcons ? (openBlock(), createBlock("div", {
         key: 0,
@@ -6787,14 +6774,13 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => _ctx.text = $event),
           ref: $options.setInputRef,
           disabled: _ctx.disabled,
-          onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.blur && _ctx.blur(...args)),
-          onKeydown: _cache[5] || (_cache[5] = withKeys(withModifiers(($event) => _ctx.$emit("update", $props.node), ["stop"]), ["enter"]))
+          onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.blur && _ctx.blur(...args))
         }, null, 40, ["disabled"])), [
           [vModelText, _ctx.text]
         ]) : (openBlock(), createBlock("span", {
           key: 1,
           class: "node-text",
-          onDblclick: _cache[6] || (_cache[6] = (...args) => _ctx.focusInput && _ctx.focusInput(...args))
+          onDblclick: _cache[5] || (_cache[5] = (...args) => _ctx.focusInput && _ctx.focusInput(...args))
         }, toDisplayString(_ctx.text), 33))
       ]),
       renderSlot(_ctx.$slots, "after-input", { node: $props.node })
