@@ -20,6 +20,7 @@
       :draggable="draggable"
       :tabindex="tabIndex"
       @blur="blur"
+      @update="update"
       @click.stop="focus"
       @dragstart.stop="dragstart"
       @dragend.stop="dragend"
