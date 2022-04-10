@@ -61,6 +61,7 @@
           :disabled="disabled"
           @blur="blur"
           @keyup.enter="$emit('update')"
+          placeholder="jemoeder"
         />
 
         <span v-else class="node-text" @dblclick="focusInput">
