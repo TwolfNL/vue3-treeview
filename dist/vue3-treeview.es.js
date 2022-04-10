@@ -5804,7 +5804,8 @@ const nodeEvents = {
   focus: "nodeFocus",
   toggle: "nodeToggle",
   blur: "nodeBlur",
-  edit: "nodeEdit"
+  edit: "nodeEdit",
+  update: "nodeUpdate"
 };
 const checkboxEvents = {
   checked: "nodeChecked",
@@ -6774,8 +6775,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           ref: $options.setInputRef,
           disabled: _ctx.disabled,
           onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.blur && _ctx.blur(...args)),
-          onKeyup: _cache[5] || (_cache[5] = withKeys(($event) => _ctx.$emit("update"), ["enter"])),
-          placeholder: "jemoeder"
+          onKeydown: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => _ctx.update && _ctx.update(...args), ["stop"]), ["enter"]))
         }, null, 40, ["disabled"])), [
           [vModelText, _ctx.text]
         ]) : (openBlock(), createBlock("span", {

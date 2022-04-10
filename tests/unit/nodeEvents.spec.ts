@@ -8,6 +8,7 @@ test("Check node Events", () => {
         toggle: "nodeToggle",
         blur: "nodeBlur",
         edit: "nodeEdit",
+        update: "nodeUpdate",
     });
 });
 
