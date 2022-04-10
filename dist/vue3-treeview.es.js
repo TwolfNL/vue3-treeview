@@ -14,7 +14,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-import { inject, ref, computed, defineAsyncComponent, resolveComponent, openBlock, createBlock, Fragment, renderList, withCtx, renderSlot, toRefs, provide, onUnmounted, createVNode, mergeProps, watch, nextTick, createCommentVNode, onMounted, withKeys, withModifiers, withDirectives, vModelText, toDisplayString, Transition } from "vue";
+import { inject, ref, computed, defineAsyncComponent, resolveComponent, openBlock, createBlock, Fragment, renderList, withCtx, renderSlot, toRefs, provide, onUnmounted, createVNode, mergeProps, createTextVNode, watch, nextTick, createCommentVNode, onMounted, withKeys, withModifiers, withDirectives, vModelText, toDisplayString, Transition } from "vue";
 function isNil(value) {
   return value == null;
 }
@@ -5764,6 +5764,7 @@ const _sfc_main$3 = {
     }
   }
 };
+const _hoisted_1$1 = /* @__PURE__ */ createTextVNode(" bladieblo ");
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TreeLevel = resolveComponent("TreeLevel");
   return openBlock(), createBlock("div", {
@@ -5789,6 +5790,9 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
         renderSlot(_ctx.$slots, "after-input", {
           node: props.node
         })
+      ]),
+      default: withCtx(() => [
+        _hoisted_1$1
       ]),
       _: 1
     }, 16)
