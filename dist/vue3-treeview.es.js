@@ -5855,9 +5855,9 @@ function useInput(cmn) {
       wrapper.value.focus();
     }
   };
-  const enter = () => {
+  const enter = (event) => {
     if (editable.value && !cmn.disabled.value && config.value.keyboardNavigation) {
-      focusInput();
+      cmn.update(event);
     }
   };
   return {
@@ -6630,6 +6630,15 @@ function useCommon(props) {
       }
     }
   };
+  const update = (e) => {
+    if (e.type === "update") {
+      const current = e.currentTarget;
+      const related = e.relatedTarget;
+      if (!current.contains(related)) {
+        root2.emit(nodeEvents.update, e, node.value);
+      }
+    }
+  };
   return {
     state,
     node,
@@ -6643,6 +6652,7 @@ function useCommon(props) {
     editing,
     focused,
     blur,
+    update,
     root: root2
   };
 }

@@ -46,9 +46,10 @@ export default function useInput(cmn: IUseCommon): {} {
         }
     });
 
-    const enter = (() => {
+    const enter = ((event: Event)  => {
         if (editable.value && !cmn.disabled.value && config.value.keyboardNavigation) {
-            focusInput();
+            // focusInput();
+             cmn.update(event);
         }
     });
 
